@@ -9,10 +9,10 @@ class AB:
 
     
     def git(self):
-        print("sucessfully integrated with CircleCi")
+        return "sucessfully integrated with CircleCi"
 
 obj = AB(3,4)
 
 print(obj.addition())
 
-obj.git()
+print(obj.git())
