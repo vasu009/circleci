@@ -5,10 +5,8 @@ jobs:
     docker:
       - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
-      - run: nomad agent -dev -bind 0.0.0.0 -log-level INFO
-      - run: gnome-terminal
-      - run: nomad job init
-      - run: nomad job run example.nomad -bind 0.0.0.0
+      - run: nomad agent -dev -bind 0.0.0.0 -log-level INFO | nomad job init
+      - run: nomad job run example.nomad
 
 
 
