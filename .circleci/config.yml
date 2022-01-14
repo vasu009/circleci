@@ -2,17 +2,15 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/circleci-python
-    docker:
-      - image: "circleci/python:3.8"
-    steps:
-      - checkout
-      - run: python3 basic-add1.py
-  test:
     docker:
       - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
       - run: nomad agent -dev -bind 0.0.0.0 -log-level INFO
+
+  test:
+    docker:
+      - image: "circleci/nomad:1.2.0-95-579fc92"
+    steps:
       - run: nomad job init
       - run: nomad job run example.nomad
 
