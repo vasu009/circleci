@@ -10,7 +10,7 @@ jobs:
       - run: python3 basic-add1.py
   test:
     docker:
-      - image: "circleci/nomad"
+      - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
       - run: nomad status
 
