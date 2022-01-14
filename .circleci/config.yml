@@ -7,9 +7,7 @@ jobs:
     steps:
       - run: 
           name: installing nomad
-          command: nomad agent -dev -bind 0.0.0.0 -log-level INFO 
-          background: true
-      - run: nomad job init
+          command: nomad agent -dev -bind 0.0.0.0 -log-level INFO && nomad job init
       - run: nomad job run example.nomad
 
 
