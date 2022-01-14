@@ -12,7 +12,7 @@ jobs:
     docker:
       - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
-      - run: nomad agent -dev
+      - run: nomad agent -dev -bind 0.0.0.0 -log-level INFO
       - run: nomad job init
       - run: nomad job run example.nomad
 
