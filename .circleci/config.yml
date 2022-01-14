@@ -15,8 +15,6 @@ jobs:
     steps:
       - checkout
       - run: python3 basic-add1.py
-  deploy:
-    steps:
       - run: nomad status
 
 workflows:
@@ -26,7 +24,3 @@ workflows:
       - test:
           requires:
             - build
-      - deploy:
-          requires:
-            - build
-            - test
