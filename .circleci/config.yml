@@ -12,7 +12,7 @@ jobs:
       - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
       - run: nomad job init
-      - run: nomad job run example.nomad
+      - run: nomad job run example.nomad -bind 0.0.0.0
 
 
 workflows:
