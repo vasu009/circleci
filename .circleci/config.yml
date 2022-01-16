@@ -12,7 +12,10 @@ jobs:
       - run: 
           name: use vagrant
           command: |
-            nomad
+            nomad agent -dev -bind 0.0.0.0 -log-level INFO
+            nomad job init
+            nomad run example.nomad
+
 
 
 
