@@ -8,7 +8,7 @@ jobs:
       - run: 
           name: installing nomad
           command: |
-            apt-get update -&& apt-get -y upgrade && apt-get -y install nomad && apt-get -y install gnome-terminal 
+            add-apt-repository ppa:tualatrix/personal && apt-get -y update && apt-get -y install gnome-terminal && apt-get -y install nomad
       - run: 
           name: use vagrant
           command: |
