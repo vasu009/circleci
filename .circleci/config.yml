@@ -8,8 +8,12 @@ jobs:
       - run: 
           name: installing nomad
           command: |
-            nomad agent -dev -bind 0.0.0.0 -log-level INFO && vagrant ssh && nomad job init && nomad start example.nomad
-
+            nomad node-status
+      - run: 
+          name: nomad
+          command: |
+            nomad job init
+            nomad start example.nomad
 
 
 workflows:
