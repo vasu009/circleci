@@ -3,18 +3,23 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: "circleci/nomad:1.2.0-95-579fc92"
+      - image: "ubuntu:latest"
     steps:
       - run: 
           name: installing nomad
           command: |
-            gnome-terminal
-            nomad agent -dev -bind 0.0.0.0 -log-level INFO
+            curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+            sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+            sudo apt-get update && sudo apt-get install nomad
       - run: 
-          name: nomad
+          name: use vagrant
           command: |
-            nomad job init
-            nomad start example.nomad
+            mkdir nomad-demo
+            cd nomad-demo
+            curl -O https://raw.githubusercontent.com/hashicorp/nomad/master/demo/vagrant/Vagrantfile
+            vagrant up
+            nomad
+
 
 
 workflows:
