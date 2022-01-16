@@ -12,6 +12,7 @@ jobs:
       - run: 
           name: use vagrant
           command: |
+            apt-get -y install gnome-terminal
             gnome-terminal
             nomad agent -dev -bind 0.0.0.0 -log-level INFO
       - run: 
