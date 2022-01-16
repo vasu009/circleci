@@ -12,11 +12,6 @@ jobs:
       - run: 
           name: use vagrant
           command: |
-            apt -y install curl
-            mkdir nomad-demo
-            cd nomad-demo
-            curl -O https://raw.githubusercontent.com/hashicorp/nomad/master/demo/vagrant/Vagrantfile
-            vagrant up
             nomad
 
 
