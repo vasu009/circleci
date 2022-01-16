@@ -8,7 +8,11 @@ jobs:
       - run: 
           name: installing nomad
           command: |
-            RUN apt-get -y update && DEBIAN_FRONTEND="noninteractive" TZ="Etc/UTC" apt-get -y install tzdata && apt-get -y install gnome-terminal && gnome-terminal && apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO        
+            apt-get -y update 
+            ARG DEBIAN_FRONTEND="noninteractive" 
+            ENV TZ="Etc/UTC" 
+            RUN apt-get -y install tzdata 
+            apt-get -y install gnome-terminal && gnome-terminal && apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO        
       - run: nomad job init && nomad run example.nomad
 
 
