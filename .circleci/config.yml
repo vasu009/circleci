@@ -8,7 +8,7 @@ jobs:
       - run: 
           name: installing nomad
           command: |
-            apt-get -y update && apt-get -y install gnome-terminal 6 && apt-get -y install nomad
+            apt-get -y update && apt-get -y install tzdata && apt-get -y install gnome-terminal && apt-get -y install nomad
       - run: 
           name: use vagrant
           command: |
