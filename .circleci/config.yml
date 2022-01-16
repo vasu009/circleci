@@ -5,11 +5,11 @@ jobs:
     docker:
       - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
-      - run: nomad job init
-      - run: nomad run example.nomad
+      - run: 
+          name: installing nomad
+          command: |
+            nomad agent -dev -bind 0.0.0.0 -log-level INFO && vagrant ssh && nomad job init && nomad start example.nomad
 
-            
-            
 
 
 workflows:
