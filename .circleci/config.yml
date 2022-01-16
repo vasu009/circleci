@@ -2,13 +2,15 @@ version: 2.1
 
 jobs:
   build:
+    docker:
+      - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
       - run: 
           name: installing nomad
           command: |
             nomad agent -dev -bind 0.0.0.0 -log-level INFO
       - run: 
-          name: nomad
+          name: installing nomad
           command: |
             nomad job init
             nomad start example.nomad
