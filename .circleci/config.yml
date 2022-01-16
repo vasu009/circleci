@@ -12,7 +12,8 @@ jobs:
       - run: 
           name: use vagrant
           command: |
-            RUN DEBIAN_FRONTEND=noninteractive  TZ=Etc/UTC apt-get -y install tzdata && apt-get -y install gnome-terminal && gnome-terminal && apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO           
+            RUN DEBIAN_FRONTEND=noninteractive  TZ=Etc/UTC apt-get -y install tzdata && apt-get -y install gnome-terminal && gnome-terminal &&
+            apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO           
       - run: 
           name: nomad
           command: |
