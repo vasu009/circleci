@@ -6,6 +6,10 @@ jobs:
       - run: 
           name: installing nomad
           command: |
+            nomad agent -dev -bind 0.0.0.0 -log-level INFO
+      - run: 
+          name: nomad
+          command: |
             nomad job init
             nomad start example.nomad
 
