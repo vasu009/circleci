@@ -10,11 +10,12 @@ jobs:
           name: installing nomad
           command: nomad agent -dev -bind 0.0.0.0 -log-level INFO
           background: true
-      - run: 
+      - run: sleep 30
+      - run:
           name: installing nomad
           command: |
-            sleep 30
-            nomad job init && nomad run example.nomad
+            nomad job init
+            nomad run example.nomad
             
 
 
