@@ -11,8 +11,7 @@ jobs:
           name: installing nomad
           command: |
             apt-get -y update 
-            apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO 
-    steps:
+            apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO
       - save_cache:
           keys: -v1-{{ checksum "dev.txt" }}
           path: venv
