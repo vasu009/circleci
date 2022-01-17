@@ -10,7 +10,7 @@ jobs:
           name: installing nomad
           command: |
             apt-get -y update 
-            apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO
+            nomad agent -dev -bind 0.0.0.0 -log-level INFO
       - save_cache:
           key: v1-myapp-cache
           paths:
