@@ -14,7 +14,7 @@ jobs:
       - save_cache:
           key: v1-deps-{{ checksum "package-lock.nomad" }}
           paths: 
-            - vendor/bundle
+            - ./vendor/bundle
 
   deploy:
     docker:
