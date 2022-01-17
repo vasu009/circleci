@@ -17,6 +17,8 @@ jobs:
             - ~/d1
 
   deploy:
+    docker:
+      - image: "ubuntu:latest"
     steps:
       - checkout
       - run: sleep 30
