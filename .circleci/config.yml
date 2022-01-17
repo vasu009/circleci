@@ -13,17 +13,23 @@ jobs:
             apt-get -y update 
             apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO
       - save_cache:
-          keys: -v1-{{ checksum "dev.txt" }}
-          paths: "venv"
+          key: -v1-{{ checksum "dev.txt" }}
+          paths: 
+            - "venv"
 
   deploy:
     docker:
       - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
       - restore_cache:
-          keys: -v1-{{ checksum "dev.txt" }}
+          key: -v1-{{ checksum "dev.txt" }}
         
       - run: nomad job init && nomad run example.nomad
+
+      - save_cache:
+          key: -v1-{{ checksum "dev.txt" }}
+          paths: 
+            - "venv"
 
 
 workflows:
