@@ -6,32 +6,22 @@ jobs:
       - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
       - checkout
-      - restore_cache:
-          key: v1-myapp-cache
       - run: 
           name: installing nomad
           command: nomad agent -dev -bind 0.0.0.0 -log-level INFO
           background: true
-      - run: nomad job init && nomad run example.nomad
+      - run: 
+          name: installing nomad
+          command: |
+            sleep 30
+            nomad job init && nomad run example.nomad
             
-      - save_cache:
-          key: v1-myapp-cache
-          paths:
-            - ~/d1
 
-  deploy:
-    docker:
-      - image: "ubuntu:latest"
-    steps:
-      - checkout
-      - run: sleep 30
-      - restore_cache:
-          key: v1-myapp-cache
-      - run: nomad job init && nomad run example.nomad
+
 
 
 workflows:
   build_and_test:
     jobs:
       - build
-      - deploy
+
