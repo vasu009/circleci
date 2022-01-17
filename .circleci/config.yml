@@ -12,9 +12,9 @@ jobs:
             apt-get -y update 
             apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO
       - save_cache:
-          key: v1-deps-{{ checksum "package-lock.nomad" }}
-          paths: 
-            - ./vendor/bundle
+          key: v1-myapp-cache
+          paths:
+            - ~/d1
 
   deploy:
     docker:
@@ -23,9 +23,7 @@ jobs:
       - checkout
       - run: sleep 30
       - restore_cache:
-          keys:
-            - v1-deps-{{ checksum "package-lock.nomad" }}
-            - v1-deps-
+          key: v1-myapp-cache
       - run: nomad job init && nomad run example.nomad
 
 
