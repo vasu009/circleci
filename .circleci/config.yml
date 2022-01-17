@@ -18,8 +18,6 @@ jobs:
             - "venv"
 
   deploy:
-    docker:
-      - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
       - run: sleep 30
       - restore_cache:
