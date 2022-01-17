@@ -23,7 +23,7 @@ jobs:
     steps:
       - restore_cache:
           key: -v1-{{ checksum "dev.txt" }}
-        
+      - run: sleep 30
       - run: nomad job init && nomad run example.nomad
 
       - save_cache:
@@ -35,7 +35,7 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - build:
+      - build
       - deploy:
           requires:
             - build
