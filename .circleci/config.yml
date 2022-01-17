@@ -17,8 +17,6 @@ jobs:
             - ~/d1
 
   deploy:
-    docker:
-      - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
       - checkout
       - run: sleep 30
