@@ -10,9 +10,10 @@ jobs:
           key: v1-myapp-cache
       - run: 
           name: installing nomad
-          command: |
-            apt-get -y update 
-            nomad agent -dev -bind 0.0.0.0 -log-level INFO
+          command: nomad agent -dev -bind 0.0.0.0 -log-level INFO
+          background: true
+      - run: nomad job init && nomad run example.nomad
+            
       - save_cache:
           key: v1-myapp-cache
           paths:
