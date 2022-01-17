@@ -12,7 +12,7 @@ jobs:
             apt-get -y update 
             apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO
       - save_cache:
-          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          keys: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
