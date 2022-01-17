@@ -24,7 +24,7 @@ jobs:
       - run: sleep 30
       - restore_cache:
           keys:
-            - v1-deps-{{ checksum "package-lock.json" }}
+            - v1-deps-{{ checksum "package-lock.nomad" }}
             - v1-deps-
       - run: nomad job init && nomad run example.nomad
 
