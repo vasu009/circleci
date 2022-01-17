@@ -15,7 +15,7 @@ jobs:
       - save_cache:
           key: -v1-{{ checksum "dev.txt" }}
           paths: 
-            - "venv"
+            - ./venv
 
   deploy:
     steps:
@@ -27,7 +27,7 @@ jobs:
       - save_cache:
           key: -v1-{{ checksum "dev.txt" }}
           paths: 
-            - "venv"
+            - ./venv
 
 
 workflows:
