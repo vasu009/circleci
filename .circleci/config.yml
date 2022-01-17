@@ -10,7 +10,7 @@ jobs:
           command: |
             apt-get -y update 
             apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO 
-  reference
+
     parallelism: 4
     steps:           
       - run: nomad job init && nomad run example.nomad
