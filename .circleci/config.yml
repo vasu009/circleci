@@ -3,15 +3,27 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: "ubuntu:latest"
+      - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
+      - restore_cache:
+          keys: -v1-{{ checksum "dev.txt" }}
       - run: 
           name: installing nomad
           command: |
             apt-get -y update 
             apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO 
+    steps:
+      - save_cache:
+          keys: -v1-{{ checksum "dev.txt" }}
+          path: venv
 
-    parallelism: 4         
+  deploy:
+    docker:
+      - image: "circleci/nomad:1.2.0-95-579fc92"
+    steps:
+      - restore_cache:
+          keys: -v1-{{ checksum "dev.txt" }}
+        
       - run: nomad job init && nomad run example.nomad
 
 
@@ -19,3 +31,4 @@ workflows:
   build_and_test:
     jobs:
       - build
+      - deploy
