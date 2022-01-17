@@ -24,6 +24,7 @@ jobs:
       - run: sleep 30
       - restore_cache:
           keys:
+            - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - asset-cache-v1-{{ arch }}-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
             - asset-cache-v1-{{ arch }}-{{ .Branch }}
             - asset-cache-v1
