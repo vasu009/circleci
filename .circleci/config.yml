@@ -12,10 +12,9 @@ jobs:
             apt-get -y update 
             apt-get -y install nomad && nomad agent -dev -bind 0.0.0.0 -log-level INFO
       - save_cache:
-          key: pip-packages-v1-{{ .Branch }}-{{ checksum "requirements.txt" }} 
+          key: gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
-            - "/usr/local/bin" 
-            - "/usr/local/lib/python3.6/site-packages"
+            - vendor/bundle
 
   deploy:
     docker:
@@ -25,7 +24,9 @@ jobs:
       - run: sleep 30
       - restore_cache:
           keys:
-            - pip-packages-v1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+            - asset-cache-v1-{{ arch }}-{{ .Branch }}-{{ .Environment.CIRCLE_SHA1 }}
+            - asset-cache-v1-{{ arch }}-{{ .Branch }}
+            - asset-cache-v1
       - run: nomad job init && nomad run example.nomad
 
 
