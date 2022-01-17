@@ -6,6 +6,8 @@ jobs:
       - image: "circleci/nomad:1.2.0-95-579fc92"
     steps:
       - checkout
+      - restore_cache:
+          key: v1-myapp-cache
       - run: 
           name: installing nomad
           command: |
