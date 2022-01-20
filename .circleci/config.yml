@@ -14,8 +14,9 @@ jobs:
       - run:
           name: running nomad
           command: |
-            nomad job init
-            nomad run example.nomad
+            touch examp.nomad
+            cp /exam.nomad examp.nomad
+            nomad run examp.nomad
             
 
 
