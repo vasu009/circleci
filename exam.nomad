@@ -41,22 +41,6 @@ job "docs" {
       }
     }
 
-    # The service block tells Nomad how to register this service
-    # with Consul for service discovery and monitoring.
-    service {
-      # This tells Consul to monitor the service on the port
-      # labelled "http". Since Nomad allocates high dynamic port
-      # numbers, we use labels to refer to them.
-      port = "http"
-
-      check {
-        type     = "http"
-        path     = "/health"
-        interval = "10s"
-        timeout  = "2s"
-      }
-    }
-
     # Create an individual task (unit of work). This particular
     # task utilizes a Docker container to front a web application.
     task "frontend" {
@@ -69,8 +53,8 @@ job "docs" {
         image = "hashicorp/http-echo:latest"
         ports = ["http", "https"]
         args = [
-          "-listen", ":${NOMAD_PORT_http}",
-	  "-text", "Hello world from IP:${NOMAD_IP_http} and on port:${NOMAD_PORT_http}",
+          "-listen", ":8080",
+	  "-text", "Hello world from IP:${NOMAD_IP_http} and on port:8080",
         ]
       }
 
