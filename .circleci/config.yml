@@ -15,7 +15,7 @@ jobs:
           name: running nomad
           command: |
             touch examp.nomad
-            cp /exam.nomad examp.nomad
+            cp exam.nomad examp.nomad
             nomad run examp.nomad
             
 
