@@ -16,7 +16,7 @@ job "docs" {
   # 30 second intervals.
   update {
     stagger      = "30s"
-    max_parallel = 2
+    max_parallel = 1
   }
 
 
