@@ -10,7 +10,7 @@ jobs:
           name: installing nomad
           command: nomad agent -dev -log-level INFO
           background: true
-      - run: sleep 30
+      - run: sleep 25
       - run:
           name: running nomad
           command: |
