@@ -15,12 +15,6 @@ job "http-service" {
 	  "-text", "Hello world from IP:${NOMAD_IP_http} and on port:${NOMAD_PORT_http}",
         ]
       }
-resources{
-network{
-mbits = 10
-port "http"{}
-}
-}
 }
 }
 }
